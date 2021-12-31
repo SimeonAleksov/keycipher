@@ -5,6 +5,8 @@ import LoginView from "./pages/onboarding/login";
 import Layout from "./layouts/default";
 import Register from "./pages/onboarding/register";
 import Password from "./pages/onboarding/reset-password";
+import OTPPage from './pages/onboarding/2fa'
+import OTPActivation from './pages/onboarding/otp'
 
 Vue.use(Router);
 
@@ -41,6 +43,16 @@ export default new Router({
           path: '/reset-password',
           name: 'reset-password',
           component: Password,
+        },
+        {
+          path: '/2fa',
+          name: '2fa',
+          component: OTPPage,
+        },
+        {
+          path: '/otp',
+          name: 'otp',
+          component: OTPActivation,
         },
       ]
     }

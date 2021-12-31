@@ -14,7 +14,7 @@
     hover:bg-emerald-600
 "
     :class="[colorClass, hoverClass, widthClass]"
-
+    :type="type"
   >
     {{ this.name }}
   </button>
@@ -39,6 +39,11 @@ export default {
       type: String,
       required: false,
       default: 'full',
+    },
+    type: {
+      type: String,
+      required: false,
+      default: 'submit',
     }
   },
   data() {

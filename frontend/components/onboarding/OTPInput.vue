@@ -7,7 +7,7 @@
         </h1>
         <Label text="Enter the 6-digit code from your app:" size="xs" class="text-center"/>
         <div class="mt-10 px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl">
-            <form>
+            <form @submit.prevent="verifyOtp">
               <div class="flex justify-center">
                   <SingleOTPInput
                     v-for="(item, i) in numInputs"
@@ -28,6 +28,13 @@
               <div class="mt-12 mb-12">
                 <Button name="Continue" color="emerald"/>
               </div>
+              <div class="mt-12 mb-10 text-sm font-display font-semibold text-gray-700 text-center">
+                <div @click="cancel2faAndGoBack" class="font-sans font-semibold text-green-600 hover:text-indigo-800 cursor-pointer">
+                  <p>
+                    <span class="font-sans font-semibold text-green-600 hover:text-indigo-800 cursor-pointer">Cancel 2FA and go back</span>
+                  </p>
+                </div>
+              </div>
             </form>
         </div>
       </div>
@@ -39,6 +46,7 @@
 import SingleOTPInput from "./SingleOTPInput";
 import Button from "../shared/Button";
 import Label from "../shared/Label";
+import Link from "../shared/Link";
 
 const BACKSPACE = 8;
 const LEFT_ARROW = 37;
@@ -48,6 +56,7 @@ const DELETE = 46;
 export default {
   name: 'OTPInput',
   components: {
+    Link,
     Label,
     Button,
     SingleOTPInput
@@ -81,6 +90,13 @@ export default {
     };
   },
   methods: {
+    async verifyOtp() {
+      const otp = Number(this.otp.join(''))
+      await this.$store.dispatch('onboarding/verify2fa', otp);
+    },
+    async cancel2faAndGoBack() {
+      await this.$store.dispatch('onboarding/cancelLogin')
+    },
     handleOnFocus(index) {
       this.activeInput = index;
     },

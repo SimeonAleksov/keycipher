@@ -1,5 +1,5 @@
-export const state = () => ({
-  token: '',
+export default () => ({
+  accessToken: '',
   isValidLogin: false,
   userInfo: {},
   otp: 0,

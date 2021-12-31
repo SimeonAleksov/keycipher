@@ -26,10 +26,6 @@ export default {
       required: false,
       default: 'full'
     },
-    onInput: {
-      type: Function,
-      required: false,
-    },
     model: {
       type: String,
       required: false,
@@ -41,6 +37,9 @@ export default {
       widthClass: `w-${this.width}`,
       dataModel: this.model,
     }
+  },
+  methods: {
+
   }
 }
 </script>
