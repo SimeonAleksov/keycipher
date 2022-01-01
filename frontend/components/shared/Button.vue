@@ -15,6 +15,7 @@
 "
     :class="[colorClass, hoverClass, widthClass]"
     :type="type"
+    @click="onClick"
   >
     {{ this.name }}
   </button>
@@ -44,6 +45,11 @@ export default {
       type: String,
       required: false,
       default: 'submit',
+    },
+    onClick: {
+      type: Function,
+      required: false,
+      default: () => {},
     }
   },
   data() {

@@ -92,8 +92,11 @@ export default {
         username: this.username,
         password: this.password
       })
-      .then(() => {
-        this.$router.push({ path: '/onboarding/otp', params: { value: 'test' }})
+      .then((response) => {
+        this.$router.push({ path: '/onboarding/otp'})
+      })
+      .catch(error => {
+        console.log(error)
       })
     }
   }

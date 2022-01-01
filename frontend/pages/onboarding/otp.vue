@@ -1,6 +1,6 @@
 <template>
   <div class="mt-20 lg:flex justify-center">
-    <div class="flex flex-col px-20 justify-center shadow-lg rounded-lg">
+    <div  v-if="value" class="flex flex-col px-20 justify-center shadow-lg rounded-lg">
       <h1 class="mt-6 text-2xl font-sans font-semibold text-emerald-700">
         Scan this QR Code
       </h1>
@@ -11,11 +11,14 @@
           <QRGenerator :value="value"/>
       </div>
       <div class="mt-10">
-        <Button name="Continue" color="emerald" class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-emerald-800 duration-300"/>
+        <Button :on-click="continueToOtpAuth" name="Continue" color="emerald" class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-emerald-800 duration-300"/>
       </div>
       <div class="mt-12 mb-10 text-xs italic break-words font-sans text-center font-semibold text-gray-500">
         After scanning the QR code, <br> you'll need to enter it to confirm.
       </div>
+    </div>
+    <div v-else>
+      Oh uh, are you lost?
     </div>
   </div>
 </template>
@@ -23,6 +26,7 @@
 <script>
 import QRGenerator  from "~/components/onboarding/QRGenerator";
 import Button from "~/components/shared/Button";
+import { mapGetters } from 'vuex'
 
 export default {
   name: "OTPActivation",
@@ -32,11 +36,17 @@ export default {
   },
   data() {
     return {
-      value: 'otpauth://totp/simeon?secret=WYZOYKSZX4QHGMKPDA2UOND6CTDDD36X&algorithm=SHA1&digits=6&period=30'
     }
   },
-  mounted() {
-    console.log(this.$route.params)
+  computed: {
+    ...mapGetters({
+      value: 'onboarding/getOtpToken',
+    }),
+  },
+  methods: {
+    continueToOtpAuth () {
+      this.$router.push('/onboarding/2fa')
+    }
   }
 }
 </script>

@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <transition >
     <Login/>
     <router-view></router-view>
-  </div>
+  </transition>
 </template>
 
 <script>

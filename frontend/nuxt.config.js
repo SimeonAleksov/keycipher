@@ -24,6 +24,7 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+      'assets/main.css'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -50,7 +51,16 @@ export default {
     theme: {
        minHeight: {
          '1/2': '50%',
-       }
+       },
+    purge: {
+      content: [
+        `components/**/*.{vue,js}`,
+        `layouts/**/*.vue`,
+        `pages/**/*.vue`,
+        `plugins/**/*.{js,ts}`,
+        `nuxt.config.{js,ts}`
+      ]
+    }
     }
   },
 

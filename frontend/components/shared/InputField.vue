@@ -3,7 +3,6 @@
          :class="[widthClass]"
          :type="this.type"
          :placeholder="this.placeholder"
-         @input="onInput"
          v-model="dataModel"
   >
 </template>

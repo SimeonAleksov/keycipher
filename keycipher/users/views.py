@@ -28,6 +28,8 @@ class TOTPVerifyView(views.APIView):
 
     def post(self, request, format=None):
         try:
-            return Response(**otp_services.validate_user_otp(request.user, request.data))
+            resp = otp_services.validate_user_otp(request.user, request.data)
+            print(resp)
+            return Response(**resp)
         except Exception as e:
             return Response(data=str(e), status=status.HTTP_400_BAD_REQUEST)

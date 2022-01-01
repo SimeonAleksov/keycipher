@@ -35,6 +35,10 @@ import Nav from "../components/Nav"
 import Footer from "../components/Footer"
 
 export default {
+  transition: {
+    name: "intro",
+    mode: "out-in"
+  },
   name: 'Index',
   components: {
    Nav,
@@ -42,3 +46,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.home-enter-active, .home-leave-active { transition: opacity .5s; }
+.home-enter, .home-leave-active { opacity: 0; }
+</style>
+

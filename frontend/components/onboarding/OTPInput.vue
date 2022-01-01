@@ -92,7 +92,11 @@ export default {
   methods: {
     async verifyOtp() {
       const otp = Number(this.otp.join(''))
-      await this.$store.dispatch('onboarding/verify2fa', otp);
+      await this.$store.dispatch('onboarding/verify2fa', otp)
+      .then(response => {
+        this.$router.push('/')
+      })
+
     },
     async cancel2faAndGoBack() {
       await this.$store.dispatch('onboarding/cancelLogin')

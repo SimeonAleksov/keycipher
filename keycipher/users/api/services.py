@@ -31,7 +31,9 @@ def validate_user_otp(user, data):
         if not device.confirmed:
             device.confirmed = True
             device.save()
-            return dict(data='Successfully confirmed.', status=status.HTTP_200_OK)
+            return dict(data='Successfully confirmed and saved device..', status=status.HTTP_201_CREATED)
+        else:
+            return dict(data="OTP code has been verified.", status=status.HTTP_200_OK)
     else:
         return dict(
             data=

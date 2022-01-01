@@ -7,11 +7,12 @@
         <div class="mt-12">
           <form @submit.prevent="login">
             <div>
-              <Label text="E-mail address" />
+              <Label text="Username" />
               <input class="block w-full px-0.5 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-green text-lg border-b focus:outline-none font-sans"
                      type="text"
                      placeholder="Enter your username"
                      v-model="username"
+                     required
               />
             </div>
             <div class="mt-8">
@@ -25,6 +26,7 @@
                      type="password"
                      placeholder="Enter your password"
                      v-model="password"
+                     required
               />
             </div>
             <div class="mt-10">
